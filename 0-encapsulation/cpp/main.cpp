@@ -25,7 +25,7 @@ public:
         age = v;
     }
 
-    int showAge() {
+    int getAge() {
         return age;
     }
 };
@@ -34,13 +34,13 @@ int main() {
     Without o;
     With w;
 
-    // losing control of age
+    // loose control over age
     o.age = 200; 
     o.age = -200;
     cout << o.age << endl;
 
     // w.age = 200; not able to compile
-    w.setAge(160); // 
     // cout << w.age << endl; not able to compile
-    cout << w.showAge() << endl;
+    w.setAge(160); 
+    cout << w.getAge() << endl;
 }
