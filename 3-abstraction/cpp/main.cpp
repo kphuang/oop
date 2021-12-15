@@ -1,6 +1,6 @@
-// using interface instead of concrete implementation to communicate
+// objects use interfaces instead of concrete implementations to interact
 #include <iostream>
-#include <vector>
+#include <unordered_map>
 using namespace std;
 
 // an interface 
@@ -51,12 +51,12 @@ public:
 };
 
 int main() {
-    vector<Transportation *> t; // interfaces we can use
-    t.emplace_back(new BusService{new Bus{}});
-    t.emplace_back(new Logistics{new Ship{}});
+    unordered_map<string, Transportation *> m; // mapping name to transportation system
+    m["bus"] = new BusService{new Bus{}};
+    m["logistics"] = new Logistics{new Ship{}};
 
-    t[0]->transit();
-    t[1]->transit();
+    m["bus"]->transit();
+    m["logistics"]->transit();
 
     return 0;
 }
