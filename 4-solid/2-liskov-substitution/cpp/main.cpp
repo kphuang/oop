@@ -1,19 +1,24 @@
 // derived class object should be substitutable for the superclass object from which it is derived
 
+#include <iostream>
+
+using namespace std;
+
 // violates LSP
 class BaseArmor {
 public:
     BaseArmor() {}
     void defendAttack() {
-        // defend physical attacks
+        cout << "defend physical attacks" << endl;
     } 
 };
 
-class ReboundArmor {
+class ReboundArmor: public BaseArmor {
 public:
     ReboundArmor() {}
-    void defendAttack() override {
-        // defend physical attacks while rebounding attack to the enemy
+    // void defendAttack() override { compile error, the superclass bevavior has changed
+    void defendAttack() {
+        cout << "defend physical attacks while rebounding attack to the enemy" << endl;
         // this modification makes defendAttack behavior changed
         // thus ReboundArmor.defendAttack cannot substitude BaseArmor.defendAttack
     }
@@ -38,12 +43,16 @@ public:
 
 // derived class from IceArmor
 // still be able to resist fire
-class AntitoxinIceArmor {
+class AntitoxinIceArmor: public IceArmor {
 public:
     AntitoxinIceArmor() {}
     void resistToxin() {}
 };
 
 int main() {
+    BaseArmor b;
+    b.defendAttack();
+    ReboundArmor r;
+    r.defendAttack();
     return 0;
 }

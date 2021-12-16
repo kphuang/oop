@@ -59,11 +59,11 @@ int main() {
     ScannerFax0 sf0;
     ScannerFax1 sf1{new ScannerModule{}, new FaxModule{}};
 
-    sf0.print(); // prints not implemented, which should not be able to work
+    sf0.print(); // this compiles, but this method should not be able to be called
     sf0.scan();
     sf0.fax();
 
-    // sf1.print(); // compile error
+    // sf1.print(); // this does not compile
     sf1.scan();
     sf1.fax();
 

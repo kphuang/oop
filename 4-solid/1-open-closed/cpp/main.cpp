@@ -25,7 +25,7 @@ public:
 };
 
 // extended from IceArmor
-class AntitoxinIceArmor {
+class AntitoxinIceArmor: public IceArmor {
 public:
     AntitoxinIceArmor() {}
     void resistToxin() {}
