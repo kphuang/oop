@@ -4,7 +4,7 @@ using namespace std;
 
 // the interface
 class IProduct {};
-class ICreator {
+class IFactory {
 public:
     virtual IProduct *create() = 0;
 };
@@ -13,7 +13,7 @@ public:
 class Table: public IProduct {};
 
 // the creator which creates product
-class TableFactory: public ICreator {
+class TableFactory: public IFactory {
 public:
     TableFactory() {}
     IProduct *create() {
@@ -23,10 +23,10 @@ public:
 
 // the class which uses factory method pattern
 class Manufacturer {
-    ICreator *_c;
+    IFactory *_c;
     vector<IProduct *> _p;
 public:
-    Manufacturer(ICreator *c): _c(c) {}
+    Manufacturer(IFactory *c): _c(c) {}
     void create(unsigned int q) {
         for (int i = 0; i < q; i++)
             _p.emplace_back(_c->create());
