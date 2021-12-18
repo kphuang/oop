@@ -23,13 +23,13 @@ public:
 
 // the class which uses factory method pattern
 class Manufacturer {
-    IFactory *_c;
+    IFactory *_f;
     vector<IProduct *> _p;
 public:
-    Manufacturer(IFactory *c): _c(c) {}
+    Manufacturer(IFactory *f): _f(f) {}
     void create(unsigned int q) {
         for (int i = 0; i < q; i++)
-            _p.emplace_back(_c->create());
+            _p.emplace_back(_f->create());
     }
 }; 
 
