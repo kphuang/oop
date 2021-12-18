@@ -2,19 +2,21 @@
 
 using namespace std;
 
-// the product
+// the interface
 class IProduct {};
+class ICreator {
+public:
+    virtual IProduct *create() = 0;
+};
+
+// the product
 class Table: public IProduct {};
 
 // the creator which creates product
-class ICreator {
-public:
-    virtual IProduct *createProduct() = 0;
-};
 class TableFactory: public ICreator {
 public:
     TableFactory() {}
-    IProduct *createProduct() {
+    IProduct *create() {
         return new Table{};
     }
 };
@@ -25,14 +27,14 @@ class Manufacturer {
     vector<IProduct *> _p;
 public:
     Manufacturer(ICreator *c): _c(c) {}
-    void createProduct(unsigned int q) {
+    void create(unsigned int q) {
         for (int i = 0; i < q; i++)
-            _p.emplace_back(_c->createProduct());
+            _p.emplace_back(_c->create());
     }
 }; 
 
 int main() {
     Manufacturer m{new TableFactory{}};
-    m.createProduct(10);
+    m.create(10);
     return 0;
 }
