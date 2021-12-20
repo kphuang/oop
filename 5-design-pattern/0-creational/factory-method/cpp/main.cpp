@@ -27,7 +27,7 @@ class Manufacturer {
     vector<IProduct *> _p;
 public:
     Manufacturer(IFactory *f): _f(f) {}
-    void create(unsigned int q) {
+    void manufacture(unsigned int q) {
         for (int i = 0; i < q; i++)
             _p.emplace_back(_f->create());
     }
@@ -35,6 +35,6 @@ public:
 
 int main() {
     Manufacturer m{new TableFactory{}};
-    m.create(10);
+    m.manufacture(10000);
     return 0;
 }
